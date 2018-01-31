@@ -1,0 +1,1 @@
+SELECT  HOST_NAME() AS 'host_name()',
