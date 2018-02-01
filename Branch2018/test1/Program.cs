@@ -65,14 +65,14 @@ namespace test1
                                 opcion = answer;
                                 switch (opcion)
                                 {
-                                    case 1: ReporteVentas(arraynuevaVenta); 
-                                            break;
-                                    case 2: ReporteClientes(arrayclienteNuevo); 
-                                            break;
-                                    case 3: ReporteClientesEdad(arrayclienteNuevo); 
-                                            break;
-                                    case 4: ReporteProductos(arrayproductoNuevo); 
-                                            break;
+                                    case 1: ReporteVentas(arraynuevaVenta);break; 
+                                            
+                                    case 2: ReporteClientes(arrayclienteNuevo);break;
+                                            
+                                    case 3: ReporteClientesEdad(arrayclienteNuevo);break; 
+                                            
+                                    case 4: ReporteProductos(arrayproductoNuevo);break; 
+                                            
                                     case 5: break;
                                 }
                             }
