@@ -5,7 +5,7 @@ namespace test1
 {
     public class Program
     {
-        const int _minimo_stock = 1000;
+        const int minimo_stock = 1000;
         static void Main(string[] args)
         {
             List<Cliente> arrayclienteNuevo = new List<Cliente>();
