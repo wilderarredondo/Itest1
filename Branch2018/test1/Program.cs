@@ -116,18 +116,18 @@ namespace test1
                 }
         }
 
-        public static void CustomersReport(List<Customer> clustomersList)
+        public static void CustomersReport(List<Customer> customersList)
         {
             bool p = true;
             Console.WriteLine("Customers older to 55 years:");
 
-            if(clustomersList.Count == 0)
+            if(customersList.Count == 0)
             {
                 Console.WriteLine("The are not registered customers");
             }
             else
                 {
-                    foreach (Customer customer in clustomersList)
+                    foreach (Customer customer in customersList)
                     {
                             if (customer.Age > 55)
                             {
@@ -141,20 +141,20 @@ namespace test1
                 }
         }
 
-        public static void CustomerReportAge(List<Customer> clustomersList)
+        public static void CustomerReportAge(List<Customer> customersList)
         {
             bool flag = true;
             DateTime date = DateTime.Today;
             string monthString = date.ToString("MMMM");
             Console.WriteLine($" Customers who meet years int the month of : {monthString}");           
             int month = DateTime.Today.Month;
-            if(clustomersList.Count == 0)
+            if(customersList.Count == 0)
             {
                 Console.WriteLine("The are not registered customers.");
             }
             else
                 {
-                    foreach (Customer clients in clustomersList)
+                    foreach (Customer clients in customersList)
                     {
                             if (month == clients.MonthBirthday)
                             {   
