@@ -7,18 +7,16 @@ namespace test1
         public Cliente()
         {
         }
+        public int clienteId { get; set; }
+        public string fullName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public int age { get; set; }
+        public int monthBirthday { get; set; }
 
-        public int ClienteId { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Correo { get; set; }
-        public int Edad { get; set; }
-        public int MesCumpleanos { get; set; }
         public override string ToString()
         {
-            return $"{this.Nombre} {this.Apellido}";
+            return $"{this.fullName} {this.lastName}";
         }
-
-    }
-        
+    }  
 }
