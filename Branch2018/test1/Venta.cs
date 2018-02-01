@@ -7,14 +7,12 @@ namespace test1
         public Venta()
         {
         }
-
-        public int VentaId { get; set; }
-        public int ProductoId { get; set; }
-        public int VendedorId { get; set; }
-        public int FacturaId { get; set; }
-        public string descripcion { get; set; }
-        public int ClienteId { get; set; }
-
+        public int ventaId { get; set; }
+        public int productoId { get; set; }
+        public int vendedorId { get; set; }
+        public int facturaId { get; set; }
+        public string description { get; set; }
+        public int clienteId { get; set; }
         public int totalVentas { get; set; }
     }
 }
