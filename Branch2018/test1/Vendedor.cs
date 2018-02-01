@@ -7,10 +7,9 @@ namespace test1
         public Vendedor()
         {
         }
-
-        public int VendedorId { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Cargo { get; set; }
+        public int vendedorId { get; set; }
+        public string fullName { get; set; }
+        public string lastName { get; set; }
+        public string position { get; set; }
     }
 }
