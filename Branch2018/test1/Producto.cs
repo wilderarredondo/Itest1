@@ -7,12 +7,10 @@ namespace test1
         public Producto()
         {
         }
-
-        public int ProductoId { get; set; }
-        public string NombreProducto { get; set; }
-        public double Precio { get; set; }
-        public string DescripcionProducto { get; set; }
+        public int productoId { get; set; }
+        public string nameProduct { get; set; }
+        public double cost { get; set; }
+        public string descriptionProduct { get; set; }
         public int stock { get; set; }
-
     }
 }
