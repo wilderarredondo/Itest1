@@ -8,15 +8,14 @@ namespace test1
         public Factura()
         {
         }
-
-        public int FacturaId { get; set; }
-        public int VendedorId { get; set; }
-        public int ProductoId { get; set; }
-        public int CodigoFactura { get; set; }
-        public int NumeroRUC { get; set; }
-        public string FechaEmision { get; set; }
-        public string FechaVencimiento { get; set; }
-        public string NombreEMpresa { get; set; }
-        public int importeTotal { get; set; }
+        public int facturaId { get; set; }
+        public int vendedorId { get; set; }
+        public int productoId { get; set; }
+        public int codeBill { get; set; }
+        public int numberRUC { get; set; }
+        public string dateEmision { get; set; }
+        public string dateExpiration { get; set; }
+        public string nameCompany { get; set; }
+        public int amountTotal { get; set; }
     }
 }
