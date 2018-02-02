@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
+using Person;
+using Accion;
+using Object;
 
 namespace test1
 {
     public class Program
     {
-        const int MINIMO_STOCK = 1000;
+        const int STOCK_MINIMUN = 1000;
 
         static void Main(string[] args)
         {
@@ -15,11 +18,11 @@ namespace test1
             List<Sale> salesList = new List<Sale>();
 
             int optionMenu = 0;
-            bool answerMenu;
-            int numberOpcion;
+            bool answerMenu = false;
+            int numberOpcion = 0;
             while (optionMenu != 6)
             {
-                do
+                while (answerMenu)
                 {
                     Console.WriteLine("--------------------");
                     Console.WriteLine("Billing Menu");
@@ -31,32 +34,28 @@ namespace test1
                     Console.WriteLine("5. Reports");
                     Console.WriteLine("6. Exit");
                     Console.WriteLine("Select an option");
-                    answerMenu= Int32.TryParse(Console.ReadLine(), out numberOpcion);
-                }   
-                    while (answerMenu == false);
+                    answerMenu = Int32.TryParse(Console.ReadLine(), out numberOpcion);
+                }
+                    
                 optionMenu = numberOpcion;
                 switch (optionMenu)
                 {
                     case 1: SalesRegistration(salesList); 
                             break;
-
                     case 2: CustomerRegistration(customersList); 
                             break;
-
                     case 3: SellerRegistration(sellerList); 
                             break;
-
                     case 4: ProductRegistration(productsList); 
                             break;
-
                     case 5:                
                             {
                                 int opcion = 0;
-                                int answer;                            
-                                bool boolAnswer = true;
+                                int answer = 0;                            
+                                bool boolAnswer = false;
                                 while (opcion != 5)
                                 {
-                                    do
+                                    while (boolAnswer)
                                     {
                                         Console.WriteLine("--------------------");
                                         Console.WriteLine("Reports Menu");
@@ -66,24 +65,20 @@ namespace test1
                                         Console.WriteLine("4. Products low stock.");
                                         Console.WriteLine("5. Return.");
                                         Console.WriteLine("Select an option");
-                                        boolAnswer = Int32.TryParse(Console.ReadLine(),out answer);
+                                        boolAnswer = Int32.TryParse(Console.ReadLine(), out answer);
                                     }   
-                                        while (boolAnswer == false);                              
+                                                                     
                                     opcion = answer;
                                     switch (opcion)
                                     {
                                         case 1: SalesReport(salesList);
-                                                break; 
-                                                
+                                                break;                                                
                                         case 2: CustomersReport(customersList);
-                                                break;
-                                                
+                                                break;                                                
                                         case 3: CustomerReportAge(customersList);
-                                                break; 
-                                                
+                                                break;                                                 
                                         case 4: ProductsReport(productsList);
-                                                break; 
-                                                
+                                                break;                                                
                                         case 5: break;
                                     }
                                 }
@@ -97,23 +92,24 @@ namespace test1
         public static void SalesReport(List<Sale> salesList)
         {
             bool p = true;
-            Console.WriteLine("Total day sales :"+ salesList.Count);
+            Console.WriteLine($"Total day sales : {salesList.Count}");
+
             if(salesList.Count == 0)
             {
                 Console.WriteLine("There are not registered sales.");
                 p = false; 
             }
             else
+            {
+                foreach (Sale sale in salesList)
                 {
-                    foreach (Sale sale in salesList)
-                    {
-                            if (p)
-                            {                            
-                                Console.WriteLine("--------------");
-                                Console.WriteLine("Customer code :" + $"{sale.CustomerId},  Product code: {sale.ProductId}, Sales description : {sale.Description}");                               
-                            }
+                    if (p)
+                    {                            
+                        Console.WriteLine("--------------");
+                        Console.WriteLine($"Customer code :  {sale.CustomerId},  Product code: {sale.ProductId}, Sales description : {sale.SaleDescription}");
                     }
                 }
+            }
         }
 
         public static void CustomersReport(List<Customer> customersList)
@@ -126,19 +122,22 @@ namespace test1
                 Console.WriteLine("The are not registered customers");
             }
             else
+            {
+                foreach (Customer customer in customersList)
                 {
-                    foreach (Customer customer in customersList)
+                    if (customer.CustomerAge > 55)
                     {
-                            if (customer.Age > 55)
-                            {
-                                p = false;
-                                Console.WriteLine("--------------");
-                                Console.WriteLine("---------Customer full name :" + $"{customer.FullName  } {customer.LastName}, Age: {customer.Age}, Birhtday Month: {customer.MonthBirthday}");
-                            }
-                            if(p)
-                                Console.WriteLine("There are not customers older to 55 yeards old");                
+                        p = false;
+                        Console.WriteLine("--------------");
+                        Console.WriteLine($"---------Customer full name : {customer.CustomerFullName  } {customer.CustomerLastName}, Age: {customer.CustomerAge}, Birhtday Month: {customer.CustomerMonthBirthday}");
                     }
+                    if(p)
+                    {
+                        Console.WriteLine("There are not customers older to 55 yeards old");
+                    }
+                        
                 }
+            }
         }
 
         public static void CustomerReportAge(List<Customer> customersList)
@@ -148,47 +147,50 @@ namespace test1
             string monthString = date.ToString("MMMM");
             Console.WriteLine($" Customers who meet years int the month of : {monthString}");           
             int month = DateTime.Today.Month;
+            
             if(customersList.Count == 0)
             {
                 Console.WriteLine("The are not registered customers.");
             }
             else
+            {
+                foreach (Customer clients in customersList)
                 {
-                    foreach (Customer clients in customersList)
-                    {
-                            if (month == clients.MonthBirthday)
-                            {   
-                                flag = false;
-                                Console.WriteLine("--------------");
-                                Console.WriteLine("Customer full name :" + $"{clients.FullName} {clients.LastName}, Age : {clients.Age}, Birthday Month : {clients.MonthBirthday}");                        
-                            }
-                            if (flag)
-                                Console.WriteLine($"Any customer meet years in the month of {monthString}");           
+                    if (month == clients.CustomerMonthBirthday)
+                    {   
+                        flag = false;   
+                        Console.WriteLine("--------------");
+                        Console.WriteLine($"Customer full name : {clients.CustomerFullName} {clients.CustomerLastName}, Age : {clients.CustomerAge}, Birthday Month : {clients.CustomerMonthBirthday}");                        
                     }
+                    if (flag)
+                    {
+                        Console.WriteLine($"Any customer meet years in the month of {monthString}");           
+                    }
+                     
                 }
+            }
         }
 
         public static void ProductsReport(List<Product> productsList)
         {
-
             Console.WriteLine("Products with stock is minimum");
             if(productsList.Count == 0)
             {
                 Console.WriteLine("There are not registered products.");
             }
             else
-                {
-                    foreach (Product Products in productsList)
-                    {              
-                        if (Products.Stock < MINIMO_STOCK)
-                        {
-                            Console.WriteLine("--------------");
-                            Console.WriteLine("Product name : " + $"{Products.NameProduct}, Price : {Products.Cost}, Stock : {Products.Stock}");                  
-                        }
-                        else
-                            Console.WriteLine("The are not products with stock less at all them");
+            {
+                foreach (Product Products in productsList)
+                {              
+                    if (Products.ProductStock < STOCK_MINIMUN)
+                    {
+                        Console.WriteLine("--------------");
+                        Console.WriteLine($"Product name : {Products.ProductName}, Price : {Products.ProductCost}, Stock : {Products.ProductStock}");                  
                     }
+                    else
+                        Console.WriteLine("The are not products with stock less at all them");
                 }
+            }
         }
 
         public static void CustomerRegistration(List<Customer> customersList)
@@ -202,30 +204,30 @@ namespace test1
             do 
             {
                 Console.WriteLine("Enter customer DNI :");
-                answer = Int32.TryParse(Console.ReadLine(),out number);
+                answer = Int32.TryParse(Console.ReadLine(), out number);
             }   
-                while (answer == false);
+            while (!answer);
             clienteNuevo.CustomerId = number;        
             Console.WriteLine("Enter customer full name :");     
-            clienteNuevo.FullName = Console.ReadLine();                                  
+            clienteNuevo.CustomerFullName = Console.ReadLine();                                  
             Console.WriteLine("Enter  customer lastname :");
-            clienteNuevo.LastName = Console.ReadLine();            
+            clienteNuevo.CustomerLastName = Console.ReadLine();            
             Console.WriteLine("Enter customer email :");
-            clienteNuevo.Email = Console.ReadLine();
+            clienteNuevo.CustomerEmail = Console.ReadLine();
             do
             {
                 Console.WriteLine("Enter age :");
                 answer = Int32.TryParse(Console.ReadLine(), out number); 
             }   
-                while (answer == false ||  number <18 || number >99);
-            clienteNuevo.Age = number;
+            while (!answer ||  number <18 || number >99);
+            clienteNuevo.CustomerAge = number;
             do
             { 
                 Console.WriteLine("Enter birthday  month (in numbers): ");
                 answer =Int32.TryParse(Console.ReadLine(), out number);
             }
-                while (answer == false || (number <1 || number>12));
-            clienteNuevo.MonthBirthday = number;
+            while (!answer || (number <1 || number>12));
+            clienteNuevo.CustomerMonthBirthday = number;
             customersList.Add(clienteNuevo);
             Console.WriteLine("----------------------- Customer registered successfully");
         }
@@ -267,8 +269,8 @@ namespace test1
                 while (answer == false);
             nuevaVenta.CustomerId = number;
             Console.WriteLine("Enter sales description :");
-            nuevaVenta.Description = Console.ReadLine();
-            nuevaVenta.TotalSales =+ nuevaVenta.TotalSales;
+            nuevaVenta.SaleDescription = Console.ReadLine();
+            nuevaVenta.SalesTotal =+ nuevaVenta.SalesTotal;
             salesList.Add(nuevaVenta);
             Console.WriteLine("----------------------- Sales registered successfully");
         }
@@ -289,11 +291,11 @@ namespace test1
                 while (answer == false);
             vendedorNuevo.SellerId =   number;
             Console.WriteLine("Enter seller full name :");
-            vendedorNuevo.FullName = Console.ReadLine();
+            vendedorNuevo.SellerFullName = Console.ReadLine();
             Console.WriteLine("Enter seller lastname :");
-            vendedorNuevo.LastName = Console.ReadLine();
-            Console.WriteLine("Enter seller email :");
-            vendedorNuevo.Position = Console.ReadLine();
+            vendedorNuevo.SellerLastName = Console.ReadLine();
+            Console.WriteLine("Enter seller position :");
+            vendedorNuevo.SellerPosition = Console.ReadLine();
             sellerList.Add(vendedorNuevo);
             Console.WriteLine("----------------------- Seller registered successfully");
         }
@@ -315,21 +317,21 @@ namespace test1
                 while (answer == false);
             productoNuevo.ProductId = number;
             Console.WriteLine("Enter product name :");
-            productoNuevo.NameProduct = Console.ReadLine();
+            productoNuevo.ProductName = Console.ReadLine();
             do
             {
                 Console.WriteLine("Enter stock :");
                 answer = Int32.TryParse(Console.ReadLine(), out number);
             }
                 while (answer == false);
-            productoNuevo.Stock = number;
+            productoNuevo.ProductStock = number;
             do
             {
                 Console.WriteLine("Enter product price :");
                 answer = Double.TryParse(Console.ReadLine(), out price);
             }
                 while (answer == false);
-            productoNuevo.Cost = price;
+            productoNuevo.ProductCost = price;
             productsList.Add(productoNuevo);
             Console.WriteLine("----------------------- Product registered successfully");
         }

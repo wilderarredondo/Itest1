@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace test1
+﻿namespace Person
 {
     public class Customer
     {
@@ -10,19 +8,19 @@ namespace test1
 
         public int CustomerId { get; set; }
 
-        public string FullName { get; set; }
+        public string CustomerFullName { get; set; }
 
-        public string LastName { get; set; }
+        public string CustomerLastName { get; set; }
 
-        public string Email { get; set; }
+        public string CustomerEmail { get; set; }
 
-        public int Age { get; set; }
+        public int CustomerAge { get; set; }
 
-        public int MonthBirthday { get; set; }
+        public int CustomerMonthBirthday { get; set; }
 
         public override string ToString()
         {
-            return $"{this.FullName} {this.LastName}";
+            return $"{this.CustomerFullName} {this.CustomerLastName}";
         }
     }  
 }

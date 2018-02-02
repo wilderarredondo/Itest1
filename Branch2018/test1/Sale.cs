@@ -1,11 +1,9 @@
-using System;
-
-namespace test1
+namespace Accion
 {
     public class Sale
     {
-        public Sale()
-        {
+        public Sale ()
+        {            
         }
 
         public int SaleId { get; set; }
@@ -16,10 +14,10 @@ namespace test1
 
         public int BillId { get; set; }
 
-        public string Description { get; set; }
+        public string SaleDescription { get; set; }
 
         public int CustomerId { get; set; }
         
-        public int TotalSales { get; set; }
+        public int SalesTotal { get; set; }
     }
 }

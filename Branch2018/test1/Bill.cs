@@ -1,6 +1,4 @@
-using System;
-
-namespace test1
+namespace Object
 {
     public class Bill
     {

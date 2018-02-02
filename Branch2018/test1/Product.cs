@@ -1,6 +1,4 @@
-using System;
-
-namespace test1
+namespace Object
 {
     public class Product
     {
@@ -10,12 +8,12 @@ namespace test1
 
         public int ProductId { get; set; }
 
-        public string NameProduct { get; set; }
+        public string ProductName { get; set; }
 
-        public double Cost { get; set; }
+        public double ProductCost { get; set; }
 
-        public string DescriptionProduct { get; set; }
+        public string ProductDescription { get; set; }
 
-        public int Stock { get; set; }
+        public int ProductStock { get; set; }
     }
 }

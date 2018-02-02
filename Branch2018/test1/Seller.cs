@@ -1,19 +1,17 @@
-using System;
-
-namespace test1
+namespace Person
 {
     public class Seller
     {
-        public Seller()
+        public Seller ()
         {
         }
 
         public int SellerId { get; set; }
 
-        public string FullName { get; set; }
+        public string SellerFullName { get; set; }
 
-        public string LastName { get; set; }
+        public string SellerLastName { get; set; }
 
-        public string Position { get; set; }
+        public string SellerPosition { get; set; }
     }
 }
